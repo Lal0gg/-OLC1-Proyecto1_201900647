@@ -1,0 +1,10 @@
+{
+// CONJUNTOS
+CONJ: letra -> a~z;
+CONJ: digito -> 0-9;
+
+//expresiones
+id -> . (letra) * | *_* | (letra) (digito);
+exp -> . (digito). *"." + (digito);
+RegEx3 -> . (digito) * | *_* | (letra) (digito);
+}

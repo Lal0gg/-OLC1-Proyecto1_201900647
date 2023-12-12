@@ -32,39 +32,38 @@ public class P1_OLC1 {
         GUI nuevaGUI = new GUI();
         nuevaGUI.setVisible(true);
         
-  // analizadorStatpy("src/statpy/", "Lexer.jflex", "Parser.cup");
- //       analizadorJson("src/json/","Lexer.jflex","Parser.cup");
+        analizadorSubSetify("src/analyzerr/", "Lexer.jflex", "Parser.cup");
 
   
 
     }
 
-//    public static void analizadorStatpy(String ruta, String jflexFile, String cupFile) {
-//
-//        try {
-//
-//            String opcionesJflex[] = {ruta + jflexFile, "-d", ruta};
-//            jflex.Main.generate(opcionesJflex);
-//
-//            String opcionesCup[] = {"-destdir", ruta, "-parser", "Parser", ruta + cupFile};
-//            java_cup.Main.main(opcionesCup);
-//
-//        } catch (Exception e) {
-//            System.out.println("No se ha podido generar los analizadores");
-//            System.out.println(e);
-//        }
-//
-//    }
-//
+    public static void analizadorSubSetify(String ruta, String jflexFile, String cupFile) {
+
+        try {
+
+            String opcionesJflex[] = {ruta + jflexFile, "-d", ruta};
+            jflex.Main.generate(opcionesJflex);
+
+            String opcionesCup[] = {"-destdir", ruta, "-parser", "Parser", ruta + cupFile};
+            java_cup.Main.main(opcionesCup);
+
+        } catch (Exception e) {
+            System.out.println("No se ha podido generar los analizadores");
+            System.out.println(e);
+        }
+
+    }
+
 //   
 //
-//    public static void analizarStatpy(String entrada) {
+//    public static void analizarSubSetify(String entrada) {
 //        try {
 //            TokenList.clear();
-//            statpy.Lexer lexer = new statpy.Lexer(new StringReader(entrada));
-//            statpy.Parser parser = new statpy.Parser(lexer);
+//            analyzerr.Lexer lexer = new analyzerr.Lexer(new StringReader(entrada));
+//            analyzerr.Parser parser = new analyzerr.Parser(lexer);
 //            parser.parse();
-//            System.out.println("Se analizó correctamente el archivo SP :D");
+//            System.out.println("Se analizó correctamente el archivo SS :D");
 //            JOptionPane.showMessageDialog(null, "Analisis Sp generado con éxito :D");
 //
 //        } 

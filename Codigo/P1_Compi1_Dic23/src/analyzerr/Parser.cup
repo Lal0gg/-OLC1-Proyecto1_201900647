@@ -1,0 +1,66 @@
+// ------------  Paquete e importaciones ------------
+package analyzerr;
+
+import java_cup.runtime.*;
+import clases.Erroor;
+import static function.funca.ErrorList;
+import java.util.LinkedList; 
+
+
+//------> Codigo para el parser
+//------> Declaracion de variables, funciones y funciones de error
+
+parser code 
+{:  
+
+    public void syntax_error(Symbol s)
+    {       
+            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
+            ErrorList.add(errorsito);
+            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );        
+    }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
+    {       
+            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
+            ErrorList.add(errorsito);
+            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+    }
+
+:}
+
+
+//------> Codigo para las acciones gramaticales (no tocar)
+action code
+{:  :}
+
+
+//------> Declaración de terminales
+terminal String TkCONJ_R,TkPUNTOYCOMA, TkDOSPUNTOS,TkCOMA;
+terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra;
+terminal String TkDelimitador,TkCerraduraKleen,TkOr,TkMas,TkInterrogacion,TkConcatenacion;
+terminal String TkGuionCurseado,TkGuionNormal,TkGuionBajo;
+terminal String TkENTERO,TkDECIMAL,TkCADENA,TkErChar,TkIdentificador,TkICaracter;
+
+
+//------> Declaración de no terminales
+non terminal inicio;
+
+
+
+//------> PRECEDENCIA
+//precedence left TkConcatenacion,TkCerraduraKleen,TkOr;
+
+
+
+//------> Definir Simbolo Inicial
+start with inicio; 
+
+
+// ------------>  Producciones  <------------
+
+
+
+inicio::= TkLLAVEA  TkLLAVEC
+;
+

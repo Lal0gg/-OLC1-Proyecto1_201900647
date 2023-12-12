@@ -110,7 +110,6 @@ public class GUI extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -118,7 +117,7 @@ public class GUI extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("StatPy Convertor");
+        setTitle("SubSetify");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(0, 0, 0));
@@ -255,15 +254,6 @@ public class GUI extends javax.swing.JFrame {
             }
         });
         jMenu2.add(jMenuItem5);
-
-        jMenuItem6.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
-        jMenuItem6.setText("JSON");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem6);
 
         jMenuBar1.add(jMenu2);
 
@@ -426,15 +416,11 @@ public class GUI extends javax.swing.JFrame {
     //Boton seleccionar Analizador "statpy"
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        jLabel4.setText("Statpy");
+        jLabel4.setText("SubSetify");
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
-    //Boton seleccionar Analizador "json"
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-        jLabel4.setText("Json");
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-    //boton para ejecutar analizador
+
+   //boton para ejecutar analizador
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         VerificarAnalizador();
@@ -632,7 +618,6 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;
