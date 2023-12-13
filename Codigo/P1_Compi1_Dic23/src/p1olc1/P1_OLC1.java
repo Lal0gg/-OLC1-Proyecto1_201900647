@@ -1,4 +1,4 @@
-package p1_olc1;
+package p1olc1;
 
 import GUI.*;
 import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
@@ -9,6 +9,7 @@ import javax.swing.text.html.HTMLEditorKit.Parser;
 import clases.Erroor;
 import clases.Token;
 import clases.Simbolito;
+import static function.funca.TokenList;
 import java.util.LinkedList;
 
 
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author edujr
  */
 public class P1_OLC1 {
-
+    
     public static void main(String[] args) {
         try {
             UIManager.setLookAndFeel(new McWinLookAndFeel());
@@ -32,7 +33,7 @@ public class P1_OLC1 {
         GUI nuevaGUI = new GUI();
         nuevaGUI.setVisible(true);
         
-        analizadorSubSetify("src/analyzerr/", "Lexer.jflex", "Parser.cup");
+       analizadorSubSetify("src/analyzerr/", "Lexer.jflex", "Parser.cup");
 
   
 
@@ -57,21 +58,21 @@ public class P1_OLC1 {
 
 //   
 //
-//    public static void analizarSubSetify(String entrada) {
-//        try {
-//            TokenList.clear();
-//            analyzerr.Lexer lexer = new analyzerr.Lexer(new StringReader(entrada));
-//            analyzerr.Parser parser = new analyzerr.Parser(lexer);
-//            parser.parse();
-//            System.out.println("Se analizó correctamente el archivo SS :D");
-//            JOptionPane.showMessageDialog(null, "Analisis Sp generado con éxito :D");
-//
-//        } 
-//        catch (Exception e) {
-//            System.out.println("Error fatal en compilación de entrada.");
-//            System.out.println(e);
-//        }
-//    }
+    public static void analizarSubSetify(String entrada) {
+        try {
+            TokenList.clear();
+            analyzerr.Lexer lexer = new analyzerr.Lexer(new StringReader(entrada));
+            analyzerr.Parser parser = new analyzerr.Parser(lexer);
+            parser.parse();
+            System.out.println("Se analizó correctamente el archivo SS :D");
+            JOptionPane.showMessageDialog(null, "Analisis SS generado con éxito :D");
+
+        } 
+        catch (Exception e) {
+            System.out.println("Error fatal en compilación de entrada.");
+            System.out.println(e);
+        }
+    }
 
     
 

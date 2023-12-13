@@ -24,14 +24,19 @@ import static function.funca.ErrorList;
  
 // ------> Expresiones Regulares 
 
+
+//comentariomulti = <![\s\S]*!>
+comentariomulti =[<][!][^!]*[!]+([^>*][^!]*[*]+)*[>]
+comentariolinea =\/\/[^\n]*
+erchar =\'[a-zA-ZñÑ]\'
+caracterSolo = [a-zA-Z0-9]
+identificador = [a-zA-Z][a-zA-Z0-9_]+
 entero =[0-9]+ 
 decimal =([0-9]+\.[0-9]+|[0-9]+)
 cadena = [\"][^\"\n]*[\"]
-comentariomultilinea =[<][!][^*]*[*]+([^/*][^*]*[*]+)*![>]
-comentariolinea =\/\/[^\n]*
-erchar =\'[a-zA-ZñÑ]\'
-identificador = [a-z][a-z0-9_]*
-caracterSolo = [^][a-zA-Z0-9][$]
+caracterEspecialUnico = [^a-zA-Z0-9]
+
+
 
 
 
@@ -72,14 +77,17 @@ caracterSolo = [^][a-zA-Z0-9][$]
 
 
 // --> ER = 8
+//{comentariomulti}       {Token NuevoToken = new Token("TKMulti",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TKMulti> Tk: " + yytext());return new Symbol(sym.TKMulti, yycolumn, yyline, yytext()); }
+//{comentariolinea}       {Token NuevoToken = new Token("TkUni",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkUni> Tk: " + yytext());return new Symbol(sym.TkUni, yycolumn, yyline, yytext()); }
+{comentariomulti}       {}
+{comentariolinea}       {}
 {entero}                {Token NuevoToken = new Token("TkENTERO",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkENTERO> Tk: " + yytext());return new Symbol(sym.TkENTERO, yycolumn, yyline, yytext()); }
 {decimal}               {Token NuevoToken = new Token("TkDECIMAL",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkDECIMAL> Tk: " + yytext());return new Symbol(sym.TkDECIMAL, yycolumn, yyline, yytext());}
-{comentariomultilinea}  {/*se ignoran comentarios multilinea */}
-{comentariolinea}       {/*se ignoran comentarios de una linea */}
 {cadena}                {Token NuevoToken = new Token("TkCADENA",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkCADENA> Tk: " + yytext());return new Symbol(sym.TkCADENA, yycolumn, yyline, yytext());}
 {erchar}                {Token NuevoToken = new Token("TkErChar",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkErChar> Tk: " + yytext());return new Symbol(sym.TkErChar, yycolumn, yyline, yytext());}
-{identificador}         {Token NuevoToken = new Token("TkIdentificador",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIdentificador> Tk: " + yytext());return new Symbol(sym.TkIdentificador, yycolumn, yyline, yytext());}
 {caracterSolo}          {Token NuevoToken = new Token("TkICaracter",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkICaracter> Tk: " + yytext());return new Symbol(sym.TkICaracter, yycolumn, yyline, yytext());}
+{identificador}         {Token NuevoToken = new Token("TkIdentificador",yytext(),yyline,yycolumn);TokenList.add(NuevoToken);System.out.println("Se acepto el Token  <TkIdentificador> Tk: " + yytext());return new Symbol(sym.TkIdentificador, yycolumn, yyline, yytext());}
+
 
 
 comentario {}

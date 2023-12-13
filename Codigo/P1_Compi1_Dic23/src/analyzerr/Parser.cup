@@ -3,7 +3,7 @@ package analyzerr;
 
 import java_cup.runtime.*;
 import clases.Erroor;
-import static function.funca.ErrorList;
+import function.funca;
 import java.util.LinkedList; 
 
 
@@ -13,19 +13,27 @@ import java.util.LinkedList;
 parser code 
 {:  
 
-    public void syntax_error(Symbol s)
-    {       
-            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
-            ErrorList.add(errorsito);
-            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado" );        
+    public void syntax_error(Symbol s) {       
+    if (s.value != null) {
+        Erroor errorsito = new Erroor("Sintactico", s.value.toString(), "No es valido en este lenguaje sintact", s.right, s.left);
+        funca.ErrorList.add(errorsito);
+        System.err.println("Error Sintactico: " + s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado");
+    } else {
+        // Handle the case where s.value is null (customize this part based on your needs)
+        System.err.println("Error Sintactico: Token sin valor asignado - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado");
     }
+}
 
-    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception
-    {       
-            Erroor errorsito = new Erroor("Sintactico", s.value.toString() ,"No es valido en este lenguaje sintact", s.right, s.left);
-            ErrorList.add(errorsito);
-            System.err.println("Error Sintactico: "+ s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Sin recuperacion." );
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+    if (s.value != null) {
+        Erroor errorsito = new Erroor("Sintactico", s.value.toString(), "No es valido en este lenguaje sintact", s.right, s.left);
+        funca.ErrorList.add(errorsito);
+        System.err.println("Error Sintactico: " + s.value.toString() + " - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado");
+    } else {
+        // Handle the case where s.value is null (customize this part based on your needs)
+        System.err.println("Error Sintactico: Token sin valor asignado - Fila: " + s.right + " - Columna: " + s.left + ". Recuperado");
     }
+}
 
 :}
 
@@ -41,15 +49,17 @@ terminal String TkLLAVEA,TkLLAVEC,TkPARENTESISAbre,TkPARENTESISCierra;
 terminal String TkDelimitador,TkCerraduraKleen,TkOr,TkMas,TkInterrogacion,TkConcatenacion;
 terminal String TkGuionCurseado,TkGuionNormal,TkGuionBajo;
 terminal String TkENTERO,TkDECIMAL,TkCADENA,TkErChar,TkIdentificador,TkICaracter;
+terminal String  TKMulti,TkUni;
 
 
 //------> Declaración de no terminales
 non terminal inicio;
-
+non terminal lista_instruccion, instruccion;
+non terminal conjunto, expresionReg;
 
 
 //------> PRECEDENCIA
-//precedence left TkConcatenacion,TkCerraduraKleen,TkOr;
+precedence left TkConcatenacion,TkCerraduraKleen,TkOr;
 
 
 
@@ -61,6 +71,33 @@ start with inicio;
 
 
 
-inicio::= TkLLAVEA  TkLLAVEC
+inicio::= TkLLAVEA lista_instruccion  TkLLAVEC
 ;
+
+lista_instruccion::= lista_instruccion instruccion
+                    | instruccion
+;
+
+
+instruccion::= conjunto
+               | expresionReg
+               | error  TkPUNTOYCOMA 
+                
+;
+
+
+
+conjunto::= TkCONJ_R  TkDOSPUNTOS  TkIdentificador TkDelimitador TkICaracter  TkGuionCurseado TkICaracter  TkPUNTOYCOMA
+           |  TkCONJ_R  TkDOSPUNTOS  TkIdentificador TkDelimitador TkICaracter  TkGuionNormal TkICaracter  TkPUNTOYCOMA 
+           | TkCONJ_R  TkDOSPUNTOS  TkIdentificador TkDelimitador TkICaracter  TkCOMA  TkICaracter TkPUNTOYCOMA 
+
+;
+
+
+expresionReg::= TkIdentificador   TkDelimitador
+;
+
+
+
+
 

@@ -4,7 +4,7 @@
  */
 package GUI;
 
-import p1_olc1.P1_OLC1;
+import p1olc1.P1_OLC1;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -29,6 +29,7 @@ import clases.Token;
 import clases.Simbolito;
 import java.util.HashMap;
 import java.util.LinkedList;
+import static p1olc1.P1_OLC1.analizarSubSetify;
 
 /**
  *
@@ -247,7 +248,7 @@ public class GUI extends javax.swing.JFrame {
         jMenu2.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
 
         jMenuItem5.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
-        jMenuItem5.setText("StatPy");
+        jMenuItem5.setText("SubSetify");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -486,24 +487,11 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void VerificarAnalizador() {
-//        if ("Statpy".equals(jLabel4.getText())) {
-//            String textt = textAreaGG.getText();
-//            analizarStatpy(textt);
-//        String traduccion ="";
-//        for (int i=0;i<Funcion.ListaTraducccionPy.size();i++){
-//            System.out.println(Funcion.ListaTraducccionPy.get(i));
-//            traduccion +=Funcion.ListaTraducccionPy.get(i)+ "\n";
-//            textAreaGG2.setText(traduccion);
-//        }
-//        } else if ("Json".equals(jLabel4.getText())) {
-//
-//            String textt2 = textAreaGG.getText();
-//            analizarJson(textt2);
-//
-//
-//       
-////            pruebitaIndentationpy();
-//        }
+        if ("SubSetify".equals(jLabel4.getText())) {
+            String textt = textAreaGG.getText();
+            analizarSubSetify(textt);
+        }
+
     }
 //    
 //      private void pruebitaIndentationpy() {
