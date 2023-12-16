@@ -4,6 +4,8 @@
  */
 package clases;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author edujr
@@ -12,10 +14,11 @@ public class ExpresionRegular {
     
     private String Identificador;
     private String Delimitador;
-    private StringBuilder Expresion;
+    private String Expresion;
     
     
-    public ExpresionRegular(String Identificador, String Delimitador, StringBuilder Expresion){
+    
+    public ExpresionRegular(String Identificador, String Delimitador, String Expresion){
         this.Delimitador = Delimitador;
         this.Expresion  = Expresion;
         this.Identificador = Identificador;
@@ -55,16 +58,18 @@ public class ExpresionRegular {
     /**
      * @return the Expresion
      */
-    public StringBuilder getExpresion() {
+    public String getExpresion() {
         return Expresion;
     }
 
     /**
      * @param Expresion the Expresion to set
      */
-    public void setExpresion(StringBuilder Expresion) {
+    public void setExpresion(String Expresion) {
         this.Expresion = Expresion;
     }
+    
+   
     
      
     public String toString(){

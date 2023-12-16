@@ -103,8 +103,9 @@ conjunto::= TkCONJ_R  TkDOSPUNTOS  TkIdentificador TkDelimitador TkICaracter  Tk
 
 expresionReg::= TkIdentificador: ID   TkDelimitador:Limitador  tokenList:RegeX  TkPUNTOYCOMA
                 {:
-                ExpresionRegular ER = new ExpresionRegular(ID.toString(),Limitador.toString(),(StringBuilder)RegeX);
+                ExpresionRegular ER = new ExpresionRegular(ID.toString(),Limitador.toString(),RegeX.toString());
                 funca.HashMapRegex.put(ID.toString(),ER);
+
                 :}
 ;
 
@@ -123,7 +124,7 @@ tokenList ::= token:val {:
 
 
 
-token ::= TkICaracter:val {:RESULT = val;:} 
+token ::= TkICaracter:val {:RESULT = " "+val+" ";:} 
         | TkICaracterEspecial:val {:RESULT = val;:} 
         | TkENTERO:val {:RESULT = val;:} 
         | TkDECIMAL:val {:RESULT = val;:} 

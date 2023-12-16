@@ -30,6 +30,7 @@ import clases.Erroor;
 import clases.ExpresionRegular;
 import clases.Token;
 import clases.Simbolito;
+import function.Thompson;
 import function.funca;
 import static function.funca.ErrorList;
 import static function.funca.TokenList;
@@ -479,10 +480,14 @@ public class GUI extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+    
         for(String clavesita : funca.HashMapRegex.keySet()){
             ExpresionRegular expresionRegular = funca.HashMapRegex.get(clavesita);
-            System.out.println(clavesita + " = " + expresionRegular.toString());
+            System.out.println(clavesita + " = " + expresionRegular.getExpresion());
+
         }
+        
+        
          
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 

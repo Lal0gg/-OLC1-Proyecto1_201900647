@@ -427,8 +427,9 @@ class CUP$Parser$actions {
 		int RegeXright = ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-1)).right;
 		Object RegeX = (Object)((java_cup.runtime.Symbol) CUP$Parser$stack.elementAt(CUP$Parser$top-1)).value;
 		
-                ExpresionRegular ER = new ExpresionRegular(ID.toString(),Limitador.toString(),(StringBuilder)RegeX);
+                ExpresionRegular ER = new ExpresionRegular(ID.toString(),Limitador.toString(),RegeX.toString());
                 funca.HashMapRegex.put(ID.toString(),ER);
+
                 
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("expresionReg",4, ((java_cup.runtime.Symbol)CUP$Parser$stack.elementAt(CUP$Parser$top-3)), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
@@ -477,7 +478,7 @@ class CUP$Parser$actions {
 		int valleft = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).left;
 		int valright = ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()).right;
 		String val = (String)((java_cup.runtime.Symbol) CUP$Parser$stack.peek()).value;
-		RESULT = val;
+		RESULT = " "+val+" ";
               CUP$Parser$result = parser.getSymbolFactory().newSymbol("token",6, ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), ((java_cup.runtime.Symbol)CUP$Parser$stack.peek()), RESULT);
             }
           return CUP$Parser$result;
