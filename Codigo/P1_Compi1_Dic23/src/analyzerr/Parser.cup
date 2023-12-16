@@ -5,6 +5,7 @@ import java_cup.runtime.*;
 import clases.Erroor;
 import function.funca;
 import java.util.LinkedList; 
+import clases.ExpresionRegular;
 
 
 //------> Codigo para el parser
@@ -12,6 +13,7 @@ import java.util.LinkedList;
 
 parser code 
 {:  
+    
 
     public void syntax_error(Symbol s) {       
     if (s.value != null) {
@@ -84,9 +86,7 @@ lista_instruccion::= lista_instruccion instruccion
 
 instruccion::= conjunto
                | expresionReg
-               | error  TkPUNTOYCOMA 
-               
-                
+               | error  TkPUNTOYCOMA                
 ;
 
 
@@ -101,36 +101,49 @@ conjunto::= TkCONJ_R  TkDOSPUNTOS  TkIdentificador TkDelimitador TkICaracter  Tk
 
 
 
-expresionReg::= TkIdentificador   TkDelimitador  tokenList  TkPUNTOYCOMA
+expresionReg::= TkIdentificador: ID   TkDelimitador:Limitador  tokenList:RegeX  TkPUNTOYCOMA
+                {:
+                ExpresionRegular ER = new ExpresionRegular(ID.toString(),Limitador.toString(),(StringBuilder)RegeX);
+                funca.HashMapRegex.put(ID.toString(),ER);
+                :}
 ;
 
-tokenList ::= token
-           | tokenList token
+tokenList ::= token:val {: 
+                        StringBuilder stringBuilder = new StringBuilder();
+                        stringBuilder.append(val);
+                        RESULT =  stringBuilder;
+                        :} 
+           | tokenList:v token:val {: 
+                                    StringBuilder stringBuilder = new StringBuilder();
+                                    stringBuilder.append(v);
+                                    stringBuilder.append(val);
+                                    RESULT =  stringBuilder;
+                                 :}  
 ;
 
 
 
-token ::= TkICaracter
-        | TkICaracterEspecial
-        | TkENTERO
-        | TkDECIMAL
-        | TkCADENA
-        | TkErChar
-        | TkIdentificador
-        | TkCOMA
-        | TkDOSPUNTOS
-        | TkLLAVEA
-        | TkLLAVEC
-        | TkPARENTESISAbre
-        | TkPARENTESISCierra
-        | TkDelimitador
-        | TkOr
-        | TkMas
-        | TkInterrogacion
-        | TkConcatenacion
-        | TkGuionCurseado
-        | TkGuionNormal
-        | TkGuionBajo
+token ::= TkICaracter:val {:RESULT = val;:} 
+        | TkICaracterEspecial:val {:RESULT = val;:} 
+        | TkENTERO:val {:RESULT = val;:} 
+        | TkDECIMAL:val {:RESULT = val;:} 
+        | TkCADENA:val {:RESULT = val;:} 
+        | TkErChar:val {:RESULT = val;:} 
+        | TkIdentificador:val {:RESULT = val;:} 
+        | TkCOMA:val {:RESULT = val;:} 
+        | TkDOSPUNTOS:val {:RESULT = val;:} 
+        | TkLLAVEA:val {:RESULT = val;:} 
+        | TkLLAVEC:val {:RESULT = val;:} 
+        | TkPARENTESISAbre:val {:RESULT = val;:} 
+        | TkPARENTESISCierra:val {:RESULT = val;:} 
+        | TkDelimitador:val {:RESULT = val;:} 
+        | TkOr:val {:RESULT = val;:} 
+        | TkMas:val {:RESULT = val;:} 
+        | TkInterrogacion:val {:RESULT = val;:} 
+        | TkConcatenacion:val {:RESULT = val;:} 
+        | TkGuionCurseado:val {:RESULT = val;:} 
+        | TkGuionNormal:val {:RESULT = val;:} 
+        | TkGuionBajo:val {:RESULT = val;:} 
 ;
 
 

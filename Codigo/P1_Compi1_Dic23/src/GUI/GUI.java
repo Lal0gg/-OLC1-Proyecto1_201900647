@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import Reportes.ReporteErrores;
+import Reportes.ReporteTokens;
 import p1olc1.P1_OLC1;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,8 +27,12 @@ import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 import clases.Erroor;
+import clases.ExpresionRegular;
 import clases.Token;
 import clases.Simbolito;
+import function.funca;
+import static function.funca.ErrorList;
+import static function.funca.TokenList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import static p1olc1.P1_OLC1.analizarSubSetify;
@@ -116,6 +122,7 @@ public class GUI extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SubSetify");
@@ -295,6 +302,15 @@ public class GUI extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem8);
 
+        jMenuItem6.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
+        jMenuItem6.setText("Impresion");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem6);
+
         jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
@@ -429,62 +445,46 @@ public class GUI extends javax.swing.JFrame {
     //boton reporte Tokens
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
         // TODO add your handling code here:
-//        if ("Statpy".equals(jLabel4.getText())) {
-//            ReporteTokens ReporteT1 = new ReporteTokens();
-//            ReporteT1.ReporteT(TokenList);
-//            func.Funcion.contadorCases = 0;
-//            for (Token token : TokenList) {
-//                System.out.println("---------------------------");
-//                System.out.print(" Token: " + token.getToken());
-//                System.out.print(" Lexema: " + token.getLexema());
-//                System.out.print(" Línea: " + token.getLinea());
-//                System.out.println(" Columna: " + token.getColumna());
-//            }
-//        } else if ("Json".equals(jLabel4.getText())) {
-//            //System.out.println(HashMapFileJson); 
-//            System.out.println(HashMapFileJson);
-//            for (String i : HashMapFileJson.keySet()) {
-//                System.out.println("Key: " + i);
-//                LinkedList<Simbolito> listaSimbolos = HashMapFileJson.get(i);
-//                for (Simbolito simbolito : listaSimbolos) {
-//                    System.out.println("Value: " + simbolito.toString()); // Utiliza la implementación personalizada de toString() de Simbolito
-//                }
-//
-//            }
-//
-//        }
+        if ("SubSetify".equals(jLabel4.getText())) {
+            ReporteTokens ReporteT1 = new ReporteTokens();
+            ReporteT1.ReporteT(TokenList);
+            for (Token token : TokenList) {
+                System.out.println("---------------------------");
+                System.out.print(" Token: " + token.getToken());
+                System.out.print(" Lexema: " + token.getLexema());
+                System.out.print(" Línea: " + token.getLinea());
+                System.out.println(" Columna: " + token.getColumna());
+            }
+        }
 
 
     }//GEN-LAST:event_jMenuItem7ActionPerformed
     //boton para errores
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
-//        if ("Statpy".equals(jLabel4.getText())) {
-//            ReporteErrores ReporteE1 = new ReporteErrores();
-//            ReporteE1.ReporteErr(ErrorList);
-//            for (Erroor error : ErrorList) {
-//                System.out.println("Tipo de Error: " + error.getType());
-//                System.out.println("Descripción: " + error.getDescription());
-//                System.out.println("Carácter: " + error.getCharacter());
-//                System.out.println("Línea: " + error.getLine());
-//                System.out.println("Columna: " + error.getColumn());
-//                System.out.println("---------------------------");
-//            }
-//
-//        } else if ("Json".equals(jLabel4.getText())) {
-//             ReporteErrores ReporteE1 = new ReporteErrores();
-//            ReporteE1.ReporteErr(ErrorList);
-//            for (Erroor error : ErrorList) {
-//                System.out.println("Tipo de Error: " + error.getType());
-//                System.out.println("Descripción: " + error.getDescription());
-//                System.out.println("Carácter: " + error.getCharacter());
-//                System.out.println("Línea: " + error.getLine());
-//                System.out.println("Columna: " + error.getColumn());
-//                System.out.println("---------------------------");
-//            }
-//            
-//        }
+        if ("SubSetify".equals(jLabel4.getText())) {
+            ReporteErrores ReporteE1 = new ReporteErrores();
+            ReporteE1.ReporteErr(ErrorList);
+            for (Erroor error : ErrorList) {
+                System.out.println("Tipo de Error: " + error.getType());
+                System.out.println("Descripción: " + error.getDescription());
+                System.out.println("Carácter: " + error.getCharacter());
+                System.out.println("Línea: " + error.getLine());
+                System.out.println("Columna: " + error.getColumn());
+                System.out.println("---------------------------");
+            }
+
+        } 
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        // TODO add your handling code here:
+        for(String clavesita : funca.HashMapRegex.keySet()){
+            ExpresionRegular expresionRegular = funca.HashMapRegex.get(clavesita);
+            System.out.println(clavesita + " = " + expresionRegular.toString());
+        }
+         
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void VerificarAnalizador() {
         if ("SubSetify".equals(jLabel4.getText())) {
@@ -606,6 +606,7 @@ public class GUI extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JPanel jPanel1;

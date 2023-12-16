@@ -1,0 +1,10 @@
+{
+// CONJUNTOS
+CONJ: letra -> a~z;
+CONJ: dig -> 0-9;
+
+//expresiones
+id -> ... abb*|ab;
+web -> ......www".".(letra)*(letra)".".(letra)*(letra);
+ip ->..........(dig)(dig)(dig)"."(dig)(dig)(dig)"."(dig)(dig)(dig);
+}
