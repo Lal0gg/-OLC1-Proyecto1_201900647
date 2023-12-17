@@ -9,9 +9,10 @@ import javax.swing.text.html.HTMLEditorKit.Parser;
 import clases.Erroor;
 import clases.Token;
 import clases.Simbolito;
+import function.Thompson;
+
 import static function.funca.TokenList;
 import java.util.LinkedList;
-
 
 import javax.swing.JOptionPane;
 
@@ -22,20 +23,13 @@ import javax.swing.JOptionPane;
 public class P1_OLC1 {
     
     public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(new McWinLookAndFeel());
-        } catch (UnsupportedLookAndFeelException e) {
-            System.err.println("No se pudo aplicar el Look and Feel deseado: " + e.getMessage());
-            e.printStackTrace();
-        }
-         
 
-        GUI nuevaGUI = new GUI();
-        nuevaGUI.setVisible(true);
+        String regex = "+..(LetraMayus)*(letra)_ ";
         
-       analizadorSubSetify("src/analyzerr/", "Lexer.jflex", "Parser.cup");
-
-  
+        Thompson nuevo = new Thompson();
+        function.NFA nfa = nuevo.buildNFAFromRegex(regex);
+        System.out.println(nfa);
+        nuevo.generateDotFile(nfa, "nfa.dot");
 
     }
 
@@ -56,8 +50,7 @@ public class P1_OLC1 {
 
     }
 
-//   
-//
+
     public static void analizarSubSetify(String entrada) {
         try {
             TokenList.clear();
@@ -73,11 +66,5 @@ public class P1_OLC1 {
             System.out.println(e);
         }
     }
-
-    
-
-    
-
-  
 
 }
