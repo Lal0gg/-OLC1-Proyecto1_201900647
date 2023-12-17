@@ -1,26 +1,15 @@
 digraph NFA { 
  rankdir=LR;
 node[shape=circle]
-10 [shape=circle];
-10 -> 6 [label="ε"];
-6 [shape=circle];
-6 -> 7 [label="LetraMayus"];
-7 [shape=circle];
-7 -> 4 [label=""];
-4 [shape=circle];
-4 -> 2 [label="ε"];
-2 [shape=circle];
-2 -> 3 [label="letra"];
-3 [shape=circle];
-3 -> 2 [label="ε"];
-3 -> 5 [label="ε"];
-5 [shape=circle];
-5 -> 0 [label=""];
-0 [shape=circle];
-0 -> 1 [label="_"];
-1 [shape=circle];
-1 -> 6 [label="ε"];
-1 -> 11 [label="ε"];
-11 [shape=doublecircle];
-4 -> 5 [label="ε"];
+170 [shape=circle];
+170 -> 171 [label="i"];
+171 [shape=circle];
+171 -> 168 [label=""];
+168 [shape=circle];
+168 -> 169 [label="n"];
+169 [shape=circle];
+169 -> 166 [label=""];
+166 [shape=circle];
+166 -> 167 [label="t"];
+167 [shape=doublecircle];
 }

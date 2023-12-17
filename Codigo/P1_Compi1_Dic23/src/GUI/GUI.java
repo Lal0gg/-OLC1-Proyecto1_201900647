@@ -7,6 +7,7 @@ package GUI;
 import Reportes.ReporteErrores;
 import Reportes.ReporteTokens;
 import p1olc1.P1_OLC1;
+import java.util.Random;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
@@ -304,7 +305,7 @@ public class GUI extends javax.swing.JFrame {
         jMenu4.add(jMenuItem8);
 
         jMenuItem6.setFont(new java.awt.Font("Roboto Mono", 0, 14)); // NOI18N
-        jMenuItem6.setText("Impresion");
+        jMenuItem6.setText("Reporte Automata");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem6ActionPerformed(evt);
@@ -368,7 +369,7 @@ public class GUI extends javax.swing.JFrame {
 
         // TODO add your handling code here:
         JFileChooser NewChooser = new JFileChooser();
-        FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Archivos SP y JSON (*.sp, *.json)", "sp", "json");
+        FileNameExtensionFilter filtro1 = new FileNameExtensionFilter("Archivos SS (*.ss)", "ss");
         NewChooser.setFileFilter(filtro1);
 
         int selex = NewChooser.showSaveDialog(textAreaGG);
@@ -438,7 +439,7 @@ public class GUI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-   //boton para ejecutar analizador
+    //boton para ejecutar analizador
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         // TODO add your handling code here:
         VerificarAnalizador();
@@ -475,20 +476,24 @@ public class GUI extends javax.swing.JFrame {
                 System.out.println("---------------------------");
             }
 
-        } 
+        }
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-    
-        for(String clavesita : funca.HashMapRegex.keySet()){
+
+        for (String clavesita : funca.HashMapRegex.keySet()) {
             ExpresionRegular expresionRegular = funca.HashMapRegex.get(clavesita);
             System.out.println(clavesita + " = " + expresionRegular.getExpresion());
-
+            Random random = new Random();
+            int nrandomsito = random.nextInt(100) + 1;
+            Thompson nuevo = new Thompson();
+            function.NFA nfa = nuevo.buildNFAFromRegex(expresionRegular.getExpresion());
+            System.out.println(nfa);
+            nuevo.generateDotFile(nfa, "nfa.dot");
+            nuevo.generateImageFromDotFile("nfa.dot", "image" + nrandomsito + ".jpg");
         }
-        
-        
-         
+
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void VerificarAnalizador() {
@@ -498,67 +503,6 @@ public class GUI extends javax.swing.JFrame {
         }
 
     }
-//    
-//      private void pruebitaIndentationpy() {
-//        
-//
-//        indentPy concatenationCounter = new indentPy();
-//        indentPy concatenationCounter2 = new indentPy();
-//        indentPy concatenationCounter3 = new indentPy();
-//        indentPy concatenationCounter4 = new indentPy();
-//        indentPy concatenationCounter5 = new indentPy();
-//
-//        
-//        indentPy concatenationCounterx = new indentPy();
-//        indentPy concatenationCounterx1 = new indentPy();
-//        indentPy concatenationCounterx2 = new indentPy();
-//        indentPy concatenationCounterx3 = new indentPy();
-//
-//
-//
-//        concatenationCounter.setIndentationLevel(0); // Establece el nivel de indentación
-//        concatenationCounter2.setIndentationLevel(1);
-//        concatenationCounter3.setIndentationLevel(2);
-//        concatenationCounter4.setIndentationLevel(1);
-//        concatenationCounter5.setIndentationLevel(2);
-//        
-//        concatenationCounterx.setIndentationLevel(0);
-//        concatenationCounterx1.setIndentationLevel(1);
-//        concatenationCounterx2.setIndentationLevel(2);
-//        concatenationCounterx3.setIndentationLevel(2);
-//
-//
-//
-//        StringBuilder result = new StringBuilder();
-//        StringBuilder result2 = new StringBuilder();
-//        P1_OLC1.indentText(NombreActualArchivoJson, WIDTH);
-//
-//        result.append(concatenationCounter.concatenateWithIndentation("switch: \n"));
-//        result.append(concatenationCounter2.concatenateWithIndentation("case 1:\n"));
-//        result.append(concatenationCounter3.concatenateWithIndentation("return \"zero\"\n"));
-//        result.append(concatenationCounter4.concatenateWithIndentation("case 2:\n"));
-//        result.append(concatenationCounter5.concatenateWithIndentation("return \"one\"\n"));        
-//        Funcion.ListaTraducidaPy.add(result);
-//        
-//        result2.append(concatenationCounterx.concatenateWithIndentation("a = 1\n"));        
-//        result2.append(concatenationCounterx1.concatenateWithIndentation("if(a==1):\n"));        
-//        result2.append(concatenationCounterx2.concatenateWithIndentation("print(\"Hola Mundo xd\")\n"));        
-//        result2.append(concatenationCounterx3.concatenateWithIndentation("print(\"UwU\")\n"));  
-//        Funcion.ListaTraducidaPy.add(result2);
-//        
-//
-//        
-//
-////        System.out.println(result.toString());
-////        System.out.println(result2.toString());
-//          String traduccion ="";
-//        for (int i=0;i<Funcion.ListaTraducidaPy.size();i++){
-//            System.out.println(Funcion.ListaTraducidaPy.get(i));
-//            traduccion +=Funcion.ListaTraducidaPy.get(i);
-//            textAreaGG2.setText(traduccion);
-//        }
-//
-//    }
 
     /**
      * @param args the command line arguments

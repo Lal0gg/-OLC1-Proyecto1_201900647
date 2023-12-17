@@ -13,6 +13,7 @@ import function.Thompson;
 
 import static function.funca.TokenList;
 import java.util.LinkedList;
+import java.util.Random;
 
 import javax.swing.JOptionPane;
 
@@ -21,15 +22,18 @@ import javax.swing.JOptionPane;
  * @author edujr
  */
 public class P1_OLC1 {
-    
+
     public static void main(String[] args) {
 
-        String regex = "+..(LetraMayus)*(letra)_ ";
-        
-        Thompson nuevo = new Thompson();
-        function.NFA nfa = nuevo.buildNFAFromRegex(regex);
-        System.out.println(nfa);
-        nuevo.generateDotFile(nfa, "nfa.dot");
+        try {
+            UIManager.setLookAndFeel(new McWinLookAndFeel());
+        } catch (UnsupportedLookAndFeelException e) {
+            System.err.println("No se pudo aplicar el Look and Feel deseado: " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        GUI nuevaGUI = new GUI();
+        nuevaGUI.setVisible(true);
 
     }
 
@@ -50,7 +54,6 @@ public class P1_OLC1 {
 
     }
 
-
     public static void analizarSubSetify(String entrada) {
         try {
             TokenList.clear();
@@ -60,8 +63,7 @@ public class P1_OLC1 {
             System.out.println("Se analizó correctamente el archivo SS :D");
             JOptionPane.showMessageDialog(null, "Analisis SS generado con éxito :D");
 
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println("Error fatal en compilación de entrada.");
             System.out.println(e);
         }

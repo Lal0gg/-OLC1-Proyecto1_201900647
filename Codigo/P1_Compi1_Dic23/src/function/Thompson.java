@@ -63,7 +63,7 @@ public class Thompson {
             } else if (Character.isLetterOrDigit(c)) {
                 // Verificar si estamos dentro de paréntesis o no
                 if (dentroDeParentesis) {
-                    System.out.println(c);
+                    //System.out.println(c);
                     contenidoParentesis.append(c);
                 } else {
                     //System.out.println(c);
@@ -89,49 +89,32 @@ public class Thompson {
                 //System.out.println(dentroDeParentesis);
                 // Agregar el contenido del paréntesis como un token si hay contenido
                 if (contenidoParentesis.length() > 0) {
-                    System.out.println(contenidoParentesis);
+                    //System.out.println(contenidoParentesis);
                     stack.push(basic(contenidoParentesis.reverse().toString()));
                 }
-            } else if (modoLiteral) {
-                if (c == '"') {
-                    stack.push(Cadenatoken(literalBuilder.reverse().toString()));
-                    literalBuilder = new StringBuilder();
-                    modoLiteral = false;
-                } else {
-                    literalBuilder.append(c);
-                }
-                continue;
             }
-            else if (c == '"') {
-                modoLiteral = true;
-            }
-        
-        
 
-        System.out.println("Stack content: " + stack);
-    }
+            System.out.println("Stack content: " + stack);
+        }
 
-    // Asegurarse de que todas las operaciones de concatenación pendientes se completen al final
-    while (stack.size () 
-        >= 2) {
+        // Asegurarse de que todas las operaciones de concatenación pendientes se completen al final
+        while (stack.size()
+                >= 2) {
             NFA a = stack.pop();
-        NFA b = stack.pop();
-        stack.push(concatenation(b, a));
-    }
+            NFA b = stack.pop();
+            stack.push(concatenation(b, a));
+        }
 
-    if (stack.size () 
-        == 1) {
+        if (stack.size()
+                == 1) {
             return stack.pop();
-    }
-
-    
-        else {
+        } else {
             // Manejar el error
             return null;
+        }
     }
-}
 
-public static NFA basic(String symbol) {
+    public static NFA basic(String symbol) {
         State start = new State(stateCounter++);
         State accept = new State(stateCounter++);
         start.next1 = accept;
@@ -180,22 +163,6 @@ public static NFA basic(String symbol) {
             return createVariable(token);
         }
     }
-    
-    
-    private static NFA Cadenatoken(String token) {
-    if (modoLiteral) {
-        // Tratar el token como literal
-        return basic(token);
-    } else {
-        // Verificar si el token está precedido por '(' y seguido por ')'
-        if (contenidoParentesis.length() > 0 && contenidoParentesis.charAt(contenidoParentesis.length() - 1) == '(') {
-            return basic(token);
-        } else {
-            // Si no está precedido por '(', tratar como variable básica
-            return createVariable(token);
-        }
-    }
-}
 
     private static NFA createVariable(String variable) {
         State start = new State(stateCounter++);
@@ -259,6 +226,28 @@ public static NFA basic(String symbol) {
         if (state.next2 != null) {
             writer.println(state.label + " -> " + state.next2.label + " [label=\"" + state.next2.transition + "\"];");
             printTransitionsDotHelper(state.next2, writer, acceptState, visitedStates);
+        }
+    }
+
+    public static void generateImageFromDotFile(String dotFilePath, String imageFilePath) {
+        try {
+            // Construir el comando para ejecutar dot
+            String command = "dot -Tpng -o " + imageFilePath + " " + dotFilePath;
+
+            // Ejecutar el comando
+            Process process = Runtime.getRuntime().exec(command);
+
+            // Esperar a que el proceso termine
+            int exitCode = process.waitFor();
+
+            // Imprimir el resultado
+            if (exitCode == 0) {
+                System.out.println("Imagen generada exitosamente: " + imageFilePath);
+            } else {
+                System.out.println("Error al generar la imagen.");
+            }
+        } catch (IOException | InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
