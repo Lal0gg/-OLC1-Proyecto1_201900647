@@ -8,14 +8,14 @@ package function;
  *
  * @author edujr
  */
-public class State {
-    int label;
-    State next1, next2;
-    String transition;
+    public class State {
+        int label;
+        State next1, next2;
+        String transition;
 
-    public State(int label) {
-        this.label = label;
-        this.next1 = this.next2 = null;
-        this.transition = "";
+        public State(int label) {
+            this.label = label;
+            this.next1 = this.next2 = null;
+            this.transition = "";
+        }
     }
-}

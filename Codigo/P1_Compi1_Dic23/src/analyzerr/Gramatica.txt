@@ -1,0 +1,61 @@
+------------------------------------------> NO TERMINALES < -------------------------------------------------
+
+
+NO TERMINALES = {   inicio; lista_instruccion; instruccion; 
+                    conjunto; expresionReg; tokenList; token
+                }
+
+------------------------------------------> TERMINALES <-----------------------------------------------------
+
+TERMINALES = {"TkCONJ_R",  "TkPUNTOYCOMA", "TkDOSPUNTOS", "TkCOMA", "TkLLAVEA", "TkLLAVEC","TkCerraduraKleen",
+            "TkPARENTESISAbre", "TkPARENTESISCierra", "TkDelimitador", "TkOr", "TkMas", "TkInterrogacion",
+            "TkConcatenacion", "TkGuionCurseado", "TkGuionNormal", "TkGuionBajo", "TkENTERO", "TkDECIMAL",
+            "TkCADENA", "TkErChar", "TkIdentificador", "TkICaracter", "TKMulti",  "TkUni", "TkICaracterEspecial",
+             }
+
+
+
+-----------------------------------------> PRODUCCIONES < ----------------------------------------------------
+
+<inicio> ::= TkLLAVEA <lista_instruccion> TkLLAVEC
+
+<lista_instruccion> ::= <lista_instruccion> <instruccion>
+                   |  <instruccion>
+
+<instruccion> ::= <conjunto>
+              |  <expresionReg>
+      
+
+<conjunto> ::= TkCONJ_R TkDOSPUNTOS TkIdentificador TkDelimitador TkICaracter TkGuionCurseado TkICaracter TkPUNTOYCOMA
+           |  TkCONJ_R TkDOSPUNTOS TkIdentificador TkDelimitador TkICaracter TkICaracterEspecial TkICaracter TkPUNTOYCOMA 
+           |  TkCONJ_R TkDOSPUNTOS TkIdentificador TkDelimitador TkICaracterEspecial TkICaracterEspecial TkICaracterEspecial TkPUNTOYCOMA 
+           |  TkCONJ_R TkDOSPUNTOS TkIdentificador TkDelimitador TkICaracterEspecial TkGuionCurseado TkICaracterEspecial TkPUNTOYCOMA 
+           |  TkCONJ_R TkDOSPUNTOS TkIdentificador TkDelimitador TkENTERO TkICaracterEspecial TkENTERO TkPUNTOYCOMA 
+           |  TkCONJ_R TkDOSPUNTOS TkIdentificador TkDelimitador TkENTERO TkCOMA TkENTERO TkPUNTOYCOMA 
+
+<expresionReg> ::= TkIdentificador TkDelimitador  <tokenList> TkPUNTOYCOMA
+
+<tokenList> ::= <token>
+           |  <tokenList> <token>
+
+<token> ::= TkICaracter
+         | TkICaracterEspecial
+         | TkENTERO
+         | TkDECIMAL
+         | TkCADENA
+         | TkErChar
+         | TkIdentificador
+         | TkCOMA
+         | TkDOSPUNTOS
+         | TkLLAVEA
+         | TkLLAVEC
+         | TkPARENTESISAbre
+         | TkPARENTESISCierra
+         | TkDelimitador
+         | TkOr
+         | TkMas
+         | TkInterrogacion
+         | TkConcatenacion
+         | TkGuionCurseado
+         | TkGuionNormal
+         | TkGuionBajo

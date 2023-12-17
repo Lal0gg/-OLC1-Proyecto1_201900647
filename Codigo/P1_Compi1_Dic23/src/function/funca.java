@@ -21,8 +21,6 @@ public class funca {
     
     //            Id ER -- ER
     public static HashMap<String,ExpresionRegular > HashMapRegex = new HashMap<>();
-    
-    
-    
+
     
 }

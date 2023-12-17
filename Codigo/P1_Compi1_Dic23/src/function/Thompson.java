@@ -250,7 +250,7 @@ public class Thompson {
             // Esperar a que el proceso termine
             int exitCode = process.waitFor();
 
-            // Imprimir el resultado
+         
             if (exitCode == 0) {
                 System.out.println("Imagen generada exitosamente: " + imageFilePath);
                 textAreaGG2.setText(textAreaGG2.getText()+"\n"+">> "+"Imagen generada exitosamente: " + imageFilePath);

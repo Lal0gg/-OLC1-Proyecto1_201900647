@@ -63,8 +63,8 @@ non terminal tokenList , token;
 
 
 //------> PRECEDENCIA
-precedence left TkConcatenacion,TkOr;
-//TkCerraduraKleen
+precedence left TkOr,TkConcatenacion,;
+
 
 
 //------> Definir Simbolo Inicial
