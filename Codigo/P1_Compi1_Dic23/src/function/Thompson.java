@@ -5,12 +5,22 @@
 package function;
 
 ;
+import static GUI.GUI.textAreaGG2;
 import java.util.Stack;
 /**
  *
  * @author edujr
  */
 
+import java.util.HashSet;
+import java.util.Set;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Stack;
+import function.NFA;
+import function.State;
+import java.util.Stack;
 import java.util.HashSet;
 import java.util.Set;
 import java.io.FileWriter;
@@ -185,10 +195,10 @@ public class Thompson {
 
     public static void generateDotFile(NFA nfa, String filename) {
         try ( PrintWriter writer = new PrintWriter(new FileWriter(filename))) {
-            writer.println("digraph NFA { \n rankdir=LR;");
+            writer.println("digraph NFA { \n rankdir=LR; \n fontname=\"Courier New\"; \n fontsize=\"20pt\"; \n bgcolor=\"paleturquoise\"; \n");
 
             // Establecer la forma de los nodos
-            writer.println("node[shape=circle]");
+            writer.println("node[shape=folder ,fontsize=\"20pt\",penwidth=1.5,fontname=\"Courier New\",style=\"filled\",fillcolor=\"lavenderblush1\"]");
 
             if (nfa != null) {
                 printTransitionsDot(nfa.start, writer, nfa.accept);
@@ -215,7 +225,7 @@ public class Thompson {
 
         // Verificar si el estado es el estado de aceptación
         String nodeShape = (state == acceptState) ? "doublecircle" : "circle";
-        writer.println(state.label + " [shape=" + nodeShape + "];");
+        writer.println(state.label + " [shape=" + nodeShape + ",label=\"  \"];");
 
         // Imprimir las transiciones
         if (state.next1 != null) {
@@ -243,8 +253,10 @@ public class Thompson {
             // Imprimir el resultado
             if (exitCode == 0) {
                 System.out.println("Imagen generada exitosamente: " + imageFilePath);
+                textAreaGG2.setText(textAreaGG2.getText()+"\n"+">> "+"Imagen generada exitosamente: " + imageFilePath);
             } else {
                 System.out.println("Error al generar la imagen.");
+                textAreaGG2.setText(textAreaGG2.getText()+"\n"+ ">> "+"Error al generar la imagen.");
             }
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();

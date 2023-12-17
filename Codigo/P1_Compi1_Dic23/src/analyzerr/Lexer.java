@@ -11,6 +11,7 @@ import clases.Token;
 import function.funca;
 import static function.funca.TokenList;
 import static function.funca.ErrorList;
+import static GUI.GUI.textAreaGG2;
 
 @SuppressWarnings("fallthrough")
 public class Lexer implements java_cup.runtime.Scanner {

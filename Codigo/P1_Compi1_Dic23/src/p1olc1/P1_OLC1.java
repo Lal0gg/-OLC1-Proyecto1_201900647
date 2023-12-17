@@ -1,6 +1,7 @@
 package p1olc1;
 
 import GUI.*;
+import static GUI.GUI.textAreaGG2;
 import com.jtattoo.plaf.mcwin.McWinLookAndFeel;
 import java.io.StringReader;
 import javax.swing.UIManager;
@@ -61,6 +62,8 @@ public class P1_OLC1 {
             analyzerr.Parser parser = new analyzerr.Parser(lexer);
             parser.parse();
             System.out.println("Se analizó correctamente el archivo SS :D");
+            
+            textAreaGG2.setText(textAreaGG2.getText()+"\n"+ ">> "+"Analaisis Léxico Exitoso ");
             JOptionPane.showMessageDialog(null, "Analisis SS generado con éxito :D");
 
         } catch (Exception e) {

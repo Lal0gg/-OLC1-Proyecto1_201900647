@@ -1,15 +1,26 @@
 digraph NFA { 
- rankdir=LR;
-node[shape=circle]
-170 [shape=circle];
-170 -> 171 [label="i"];
-171 [shape=circle];
-171 -> 168 [label=""];
-168 [shape=circle];
-168 -> 169 [label="n"];
-169 [shape=circle];
-169 -> 166 [label=""];
-166 [shape=circle];
-166 -> 167 [label="t"];
-167 [shape=doublecircle];
+ rankdir=LR; 
+ fontname="Courier New"; 
+ fontsize="20pt"; 
+ bgcolor="paleturquoise"; 
+
+node[shape=folder ,fontsize="20pt",penwidth=1.5,fontname="Courier New",style="filled",fillcolor="lavenderblush1"]
+44 [shape=circle,label="  "];
+44 -> 45 [label="digito"];
+45 [shape=circle,label="  "];
+45 -> 42 [label=""];
+42 [shape=circle,label="  "];
+42 -> 40 [label="ε"];
+40 [shape=circle,label="  "];
+40 -> 36 [label="ε"];
+36 [shape=circle,label="  "];
+36 -> 37 [label="digito"];
+37 [shape=circle,label="  "];
+37 -> 36 [label="ε"];
+37 -> 41 [label="ε"];
+41 [shape=circle,label="  "];
+41 -> 40 [label="ε"];
+41 -> 43 [label="ε"];
+43 [shape=doublecircle,label="  "];
+42 -> 43 [label="ε"];
 }

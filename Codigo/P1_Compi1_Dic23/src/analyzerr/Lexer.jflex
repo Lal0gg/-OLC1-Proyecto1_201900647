@@ -7,6 +7,7 @@ import clases.Token;
 import function.funca;
 import static function.funca.TokenList;
 import static function.funca.ErrorList;
+
 %%	
 //-------> Directivas (No tocar)
 
